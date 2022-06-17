@@ -1,19 +1,51 @@
 import styled from 'styled-components';
-import IconEdit from './icons/IconEdit';
-import IconDelete from './icons/IconDelete';
 import IconAdd from './icons/IconAdd';
 import palette from 'lib/styles/palette';
+import { useState } from 'react';
+import axios from '../../node_modules/axios/index';
+import { useParams } from 'react-router-dom';
+import EditNoteInput from './EditNoteInput';
 
 const Note = (props) => {
+  const bookId = useParams().id;
   const noteData = props.note;
+  const [visible, setVisible] = useState(false);
+  const [page, setPage] = useState('');
+  const [sentence, setSentence] = useState('');
+
+  const handleResizeHeight = (e) => {
+    const obj = e.target;
+    obj.style.height = '0px';
+    obj.style.height = obj.scrollHeight + 'px';
+  };
+
+  const handleSetPage = (e) => {
+    setPage(e.target.value);
+  };
+
+  const handleSetSentence = (e) => {
+    setSentence(e.target.value);
+  };
+
+  const handleAddSentence = (e) => {
+    const note = {
+      page: page,
+      sentence: sentence,
+    };
+
+    axios
+      .post(`${bookId}/notes`, note)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+
+    setPage('');
+    setSentence('');
+
+    window.location.replace(`${bookId}`);
+  };
+
   return (
     <Container>
-      <BtnWrapper>
-        <button>
-          <IconAdd size={18} />
-          <span>필사 추가</span>
-        </button>
-      </BtnWrapper>
       <Table>
         <thead>
           <tr>
@@ -29,35 +61,53 @@ const Note = (props) => {
         <tbody>
           {noteData.length >= 1 &&
             noteData.map((note) => (
-              <tr key={note.id}>
-                <td>p.{note.page}</td>
-                <td>
-                  <SentenceContainer>{note.sentence}</SentenceContainer>
-                </td>
-                <td>
-                  <BtnContainer>
-                    <button
-                      onClick={() => {
-                        console.log(`Edit ${note.id}`);
-                      }}
-                    >
-                      <IconEdit size={18} />
-                    </button>
-                    <Line />
-                    <button
-                      onClick={() => {
-                        console.log(`Delete ${note.id}`);
-                      }}
-                    >
-                      <IconDelete size={18} />
-                    </button>
-                  </BtnContainer>
-                </td>
-              </tr>
+              <EditNoteInput key={note.id} bookId={bookId} note={note} />
             ))}
+          {visible && (
+            <tr>
+              <td>
+                <input
+                  type="text"
+                  name="page"
+                  id="page"
+                  placeholder="1"
+                  onChange={handleSetPage}
+                />
+              </td>
+              <td>
+                <textarea
+                  name="page"
+                  id="sentence"
+                  placeholder="기억하고 싶은 문장을 기록해보세요."
+                  onInput={handleResizeHeight}
+                  onChange={handleSetSentence}
+                />
+              </td>
+              <td>
+                <InputBtnContainer>
+                  <button onClick={handleAddSentence}>
+                    <div>생성</div>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setVisible(!visible);
+                    }}
+                  >
+                    <div>취소</div>
+                  </button>
+                </InputBtnContainer>
+              </td>
+            </tr>
+          )}
           <tr>
             <AddBtnWrapper colSpan={3}>
-              <IconAdd size={18} />
+              <button
+                onClick={() => {
+                  setVisible(!visible);
+                }}
+              >
+                <IconAdd size={18} />
+              </button>
             </AddBtnWrapper>
           </tr>
         </tbody>
@@ -80,31 +130,7 @@ const Container = styled.div`
   width: 800px;
   height: auto;
   border: 1px solid #cecece;
-`;
-
-const BtnWrapper = styled.div`
-  display: flex;
-  padding: 20px 50px 0 0;
-  justify-content: right;
-
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: ${palette.gray[3]};
-    border-radius: 5px;
-    width: 100px;
-    height: 30px;
-    &:hover {
-      background-color: ${palette.cyan[2]};
-    }
-  }
-
-  svg {
-    margin-right: 6px;
-  }
-   {
-  }
+  border-radius: 10px;
 `;
 
 const Table = styled.table`
@@ -133,24 +159,30 @@ const Table = styled.table`
   }
   td {
     font-size: 14px;
+    height: 30px;
 
     &:last-child {
       width: 100px;
     }
   }
-`;
 
-const SentenceContainer = styled.div`
-  min-height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+  input,
+  textarea {
+    border: none;
+    background-color: ${palette.gray[1]};
+    width: 90%;
+    text-align: center;
+    /* white-space: pre-line; */
+  }
 
-const BtnContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: auto auto auto 18px;
+  input {
+    height: 20px;
+  }
+
+  textarea {
+    height: 20px;
+    padding: 1px;
+  }
 `;
 
 const Line = styled.span`
@@ -160,6 +192,34 @@ const Line = styled.span`
 `;
 
 const AddBtnWrapper = styled.td`
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
   padding: 5px 0;
+`;
+
+const InputBtnContainer = styled.div`
+  display: flex;
+  align-items: center;
+  /* background-color: gray; */
+
+  button {
+    background-color: ${palette.gray[1]};
+    border-radius: 5px;
+    width: 40px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:first-child {
+      margin-right: 3px;
+
+      &:hover {
+        background-color: ${palette.cyan[1]};
+      }
+    }
+
+    &:last-child:hover {
+      background-color: ${palette.red[1]};
+    }
+  }
 `;

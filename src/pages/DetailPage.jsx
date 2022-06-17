@@ -9,6 +9,21 @@ import axios from 'axios';
 const DetailPage = () => {
   const bookId = useParams().id;
   const [bookData, setBookData] = useState({});
+  const [editable, setEditable] = useState(false);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+
+  const editOnOff = () => {
+    setEditable(!editable);
+  };
+
+  const getStartDate = (startDate) => {
+    setStartDate(startDate);
+  };
+
+  const getEndDate = (endDate) => {
+    setEndDate(endDate);
+  };
 
   useEffect(() => {
     axios
@@ -17,14 +32,53 @@ const DetailPage = () => {
       .catch((error) => console.log(error));
   }, [bookId, setBookData]);
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    let body = {
+      startDate: startDate,
+      endDate: endDate,
+    };
+
+    axios
+      .patch(`${bookId}`, body)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+
+    window.location.replace(`${bookId}`);
+  };
+
   return (
     <Container>
-      <BtnWrapper>
-        <form>
-          <button type="submit">수정하기</button>
-        </form>
-      </BtnWrapper>
-      <BookDetail book={bookData} type="edit" />
+      {editable ? (
+        <>
+          <BtnWrapper>
+            <form
+              onSubmit={(e) => {
+                onSubmit(e);
+              }}
+            >
+              <button type="submit">수정완료</button>
+            </form>
+          </BtnWrapper>
+          <BookDetail
+            book={bookData}
+            getStartDate={getStartDate}
+            getEndDate={getEndDate}
+            type="edit"
+          />
+        </>
+      ) : (
+        <>
+          <BtnWrapper>
+            <button type="button" onClick={(e) => editOnOff(e)}>
+              수정하기
+            </button>
+          </BtnWrapper>
+          <BookDetail book={bookData} type="detail" />
+        </>
+      )}
+
       <Note note={bookData.notes} />
     </Container>
   );

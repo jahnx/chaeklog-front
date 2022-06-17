@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const BookDetail = (props) => {
   const { title, authors, thumbnail, startDate, endDate } = props.book;
-
   const onChangeStartDate = (e) => {
     props.getStartDate(e.target.value);
   };
@@ -10,6 +9,7 @@ const BookDetail = (props) => {
   const onChangeEndDate = (e) => {
     props.getEndDate(e.target.value);
   };
+
   return (
     <BookWrapper>
       <Thumbnail>
@@ -19,7 +19,7 @@ const BookDetail = (props) => {
         <h1>{title}</h1>
         <h2>{authors}</h2>
         <h3>독서 기간</h3>
-        {props.type === 'add' ? (
+        {props.type !== 'detail' ? (
           <>
             <input
               type="date"
@@ -109,7 +109,7 @@ const Content = styled.div`
   & span {
     font-size: 15px;
 
-    &:not(:last-child)::after {
+    &:last-child::before {
       content: ' ~ ';
     }
   }
