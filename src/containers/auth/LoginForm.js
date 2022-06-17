@@ -2,7 +2,6 @@ import AuthForm from 'components/auth/AuthForm';
 import { useState, useCallback } from 'react';
 import axios from '../../../node_modules/axios/index';
 import { useNavigate } from 'react-router';
-import Cookies from 'js-cookie';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -38,8 +37,8 @@ const LoginForm = () => {
           axios.defaults.headers.common[
             'Authorization'
           ] = `Bearer ${accessToken}`;
-          accessToken ? Cookies.set('user', true) : Cookies.set('user', false);
-          navigate('/mybooks');
+          localStorage.setItem('token', accessToken);
+          navigate('/books');
         })
         .catch((error) => console.log(error.response))
         .finally(() => {});

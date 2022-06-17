@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const AddBtn = (props) => {
   return (
-    <Link to="/search">
+    <Link to={props.api}>
       <Container>
         <div>
           <IconAdd size={18} />

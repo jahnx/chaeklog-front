@@ -1,11 +1,19 @@
 import styled from 'styled-components';
 import IconEdit from './icons/IconEdit';
 import IconDelete from './icons/IconDelete';
+import IconAdd from './icons/IconAdd';
+import palette from 'lib/styles/palette';
 
 const Note = (props) => {
   const { id, page, sentence } = props;
   return (
     <Container>
+      <BtnWrapper>
+        <button>
+          <IconAdd size={18} />
+          <span>필사 추가</span>
+        </button>
+      </BtnWrapper>
       <Table>
         <thead>
           <tr>
@@ -62,6 +70,31 @@ const Container = styled.div`
   width: 800px;
   height: auto;
   border: 1px solid #cecece;
+`;
+
+const BtnWrapper = styled.div`
+  display: flex;
+  padding: 20px 50px 0 0;
+  justify-content: right;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${palette.gray[3]};
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+    &:hover {
+      background-color: ${palette.cyan[2]};
+    }
+  }
+
+  svg {
+    margin-right: 6px;
+  }
+   {
+  }
 `;
 
 const Table = styled.table`

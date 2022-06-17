@@ -1,27 +1,24 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import isLogin from 'lib/isLogin';
+import palette from 'lib/styles/palette';
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const user = isLogin();
+  const token = localStorage.getItem('token');
 
-  const logoutHandler = () => {
-    Cookies.set('user', false, {
-      maxAge: 0,
-    });
+  const logOut = () => {
+    localStorage.removeItem('token');
     navigate('/');
   };
 
   return (
     <Container>
-      <Link to="/mybooks">책로그</Link>
-      {user ? (
-        <button onClick={logoutHandler}>로그아웃</button>
+      <Link to={!token ? '/' : '/books'}>책로그</Link>
+      {!token ? (
+        <span>로그인 후 이용하실 수 있습니다.</span>
       ) : (
-        <div>로그인 해주세요</div>
+        <button onClick={logOut}>로그아웃</button>
       )}
     </Container>
   );
@@ -38,5 +35,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   font-size: 20px;
-  padding: 10px;
+  padding: 10px 20px;
+
+  span {
+    font-size: 15px;
+    color: ${palette.gray[8]};
+  }
 `;

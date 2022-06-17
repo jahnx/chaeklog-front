@@ -44,7 +44,7 @@ const RegisterForm = () => {
         .post('/auth/signup', body)
         .then((response) => {
           console.log(response);
-          navigate('/login');
+          navigate('/');
         })
         .catch((error) => console.log(error.response))
         .finally(() => {});

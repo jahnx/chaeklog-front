@@ -1,35 +1,54 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Book = (props) => {
-  const { id, title, author, imgURL, startDate, endDate } = props;
+  const { id, title, authors, thumbnail, startDate, endDate } = props.book;
+  const thisBook = {
+    title: title,
+    authors: authors,
+    thumbnail: thumbnail,
+  };
   return (
-    <a href={`/books/${id}`}>
-      <Container>
-        <Thumbnail>
-          <img src={imgURL} alt={`${title}의 표지`} />
-        </Thumbnail>
-        <Content>
-          <h1>{title}</h1>
-          <h2>{author}</h2>
-          <span>{startDate}</span>
-          <span>{endDate}</span>
-        </Content>
-      </Container>
-    </a>
+    <StyledLinkWrapper>
+      <Link
+        to={props.type === 'default' ? `/books/${id}` : `/books/add`}
+        state={{ data: thisBook }}
+      >
+        <Container>
+          <Thumbnail>
+            <img src={thumbnail} alt={`${title}의 표지`} />
+          </Thumbnail>
+          <Content>
+            <h1>{title}</h1>
+            <h2>{authors}</h2>
+            {props.type === 'default' ? (
+              <>
+                <span>{startDate}</span>
+                <span>{endDate}</span>
+              </>
+            ) : null}
+          </Content>
+        </Container>
+      </Link>
+    </StyledLinkWrapper>
   );
 };
 
 export default Book;
 
-Book.defaultProps = {
-  id: 1,
-  title: 'default title',
-  author: 'default author',
-  imgURL:
-    'https://image.aladin.co.kr/product/29537/51/cover500/k162837952_1.jpg',
-  startDate: '2022-01-01',
-  endDate: '2022-12-12',
-};
+// Book.defaultProps = {
+//   id: 1,
+//   title: 'default title',
+//   author: 'default author',
+//   imgURL:
+//     'https://image.aladin.co.kr/product/29537/51/cover500/k162837952_1.jpg',
+//   startDate: '2022-01-01',
+//   endDate: '2022-12-12',
+// };
+
+const StyledLinkWrapper = styled.div`
+  display: inline-block;
+`;
 
 const Container = styled.div`
   width: 330px;
@@ -58,15 +77,14 @@ const Content = styled.div`
   /* border: 1px solid blue; */
   margin: 15px 0;
   width: 180px;
-  color: #797979;
 
   h1 {
-    font-size: 30px;
+    font-size: 20px;
     margin-bottom: 6px;
   }
 
   h2 {
-    font-size: 25px;
+    font-size: 15px;
     margin-bottom: 6px;
   }
 
