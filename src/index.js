@@ -5,8 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import { CookiesProvider } from 'react-cookie';
 
-const token = localStorage.getItem('token');
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem(
+  'token',
+)}`;
 axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,6 +17,5 @@ root.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    ,
   </CookiesProvider>,
 );

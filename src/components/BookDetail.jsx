@@ -48,12 +48,14 @@ const BookDetail = (props) => {
 
 export default BookDetail;
 
-BookDetail.defaultProps = {
-  title: 'default title',
-  authors: 'default author',
-  thumbnail:
-    'https://image.aladin.co.kr/product/29537/51/cover500/k162837952_1.jpg',
-};
+// BookDetail.defaultProps = {
+//   book: {
+//     title: 'default title',
+//     authors: 'default author',
+//     thumbnail:
+//       'https://image.aladin.co.kr/product/29537/51/cover500/k162837952_1.jpg',
+//   },
+// };
 
 const BookWrapper = styled.div`
   /* border: 1px solid pink; */

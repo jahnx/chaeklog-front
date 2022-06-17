@@ -7,6 +7,8 @@ const Book = (props) => {
     title: title,
     authors: authors,
     thumbnail: thumbnail,
+    startDate: startDate,
+    endDate: endDate,
   };
   return (
     <StyledLinkWrapper>

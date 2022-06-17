@@ -5,7 +5,7 @@ import IconAdd from './icons/IconAdd';
 import palette from 'lib/styles/palette';
 
 const Note = (props) => {
-  const { id, page, sentence } = props;
+  const noteData = props.note;
   return (
     <Container>
       <BtnWrapper>
@@ -27,30 +27,38 @@ const Note = (props) => {
           </tr>
         </thead>
         <tbody>
+          {noteData.length >= 1 &&
+            noteData.map((note) => (
+              <tr key={note.id}>
+                <td>p.{note.page}</td>
+                <td>
+                  <SentenceContainer>{note.sentence}</SentenceContainer>
+                </td>
+                <td>
+                  <BtnContainer>
+                    <button
+                      onClick={() => {
+                        console.log(`Edit ${note.id}`);
+                      }}
+                    >
+                      <IconEdit size={18} />
+                    </button>
+                    <Line />
+                    <button
+                      onClick={() => {
+                        console.log(`Delete ${note.id}`);
+                      }}
+                    >
+                      <IconDelete size={18} />
+                    </button>
+                  </BtnContainer>
+                </td>
+              </tr>
+            ))}
           <tr>
-            <td>p.{page}</td>
-            <td>
-              <SentenceContainer>{sentence}</SentenceContainer>
-            </td>
-            <td>
-              <BtnContainer>
-                <button
-                  onClick={() => {
-                    console.log(`Edit ${id}`);
-                  }}
-                >
-                  <IconEdit size={18} />
-                </button>
-                <Line />
-                <button
-                  onClick={() => {
-                    console.log(`Delete ${id}`);
-                  }}
-                >
-                  <IconDelete size={18} />
-                </button>
-              </BtnContainer>
-            </td>
+            <AddBtnWrapper colSpan={3}>
+              <IconAdd size={18} />
+            </AddBtnWrapper>
           </tr>
         </tbody>
       </Table>
@@ -61,9 +69,11 @@ const Note = (props) => {
 export default Note;
 
 Note.defaultProps = {
-  id: 1,
-  page: 100,
-  sentence: 'test sentence',
+  note: {
+    id: 1,
+    page: 100,
+    sentence: 'test sentence',
+  },
 };
 
 const Container = styled.div`
@@ -147,4 +157,9 @@ const Line = styled.span`
   margin: 0 5px;
   border: 1px solid black;
   height: 15px;
+`;
+
+const AddBtnWrapper = styled.td`
+  background-color: lightgrey;
+  padding: 5px 0;
 `;

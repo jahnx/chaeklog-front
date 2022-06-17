@@ -7,9 +7,6 @@ const SearchBook = () => {
   const [searchedBooks, setSearchedBooks] = useState([]);
   const [keyword, setKeyword] = useState('');
 
-  const accessToken = localStorage.getItem('token');
-  axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-
   const onChange = (e) => {
     setKeyword(e.target.value);
   };

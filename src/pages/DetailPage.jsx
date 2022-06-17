@@ -1,16 +1,21 @@
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
 import palette from 'lib/styles/palette';
 import BookDetail from 'components/BookDetail';
-import { useEffect, useState } from 'react';
-import axios from '../../node_modules/axios/index';
-import { useCallback } from 'react';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Note from 'components/Note';
+import axios from 'axios';
 
 const DetailPage = () => {
-  const params = useParams();
-  const [bookData, setBookData] = useState();
+  const bookId = useParams().id;
+  const [bookData, setBookData] = useState({});
 
-  console.log(bookData);
+  useEffect(() => {
+    axios
+      .get(`${bookId}`)
+      .then((response) => setBookData(response.data))
+      .catch((error) => console.log(error));
+  }, [bookId, setBookData]);
 
   return (
     <Container>
@@ -20,6 +25,7 @@ const DetailPage = () => {
         </form>
       </BtnWrapper>
       <BookDetail book={bookData} type="edit" />
+      <Note note={bookData.notes} />
     </Container>
   );
 };
