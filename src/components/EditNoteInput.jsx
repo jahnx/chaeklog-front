@@ -1,4 +1,4 @@
-import IconEdit from './icons/IconEdit';
+import IconSave from './icons/IconSave';
 import IconDelete from './icons/IconDelete';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -88,7 +88,7 @@ const EditNoteInput = (props) => {
                 handleEditNote(note.id);
               }}
             >
-              <IconEdit size={18} />
+              <IconSave size={18} />
             </button>
             <Line />
             <button
@@ -117,7 +117,7 @@ const SentenceContainer = styled.div`
 const BtnContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: auto auto auto 18px;
+  margin: auto auto auto 21px;
 `;
 
 const Line = styled.span`

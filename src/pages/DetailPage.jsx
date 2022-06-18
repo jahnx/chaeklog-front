@@ -48,6 +48,15 @@ const DetailPage = () => {
     window.location.replace(`${bookId}`);
   };
 
+  const handleDeleteNote = (e) => {
+    e.preventDefault();
+    axios
+      .delete(`${bookId}`)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+    window.location.replace('/');
+  };
+
   return (
     <Container>
       {editable ? (
@@ -71,6 +80,9 @@ const DetailPage = () => {
       ) : (
         <>
           <BtnWrapper>
+            <button type="button" onClick={(e) => handleDeleteNote(e)}>
+              삭제하기
+            </button>
             <button type="button" onClick={(e) => editOnOff(e)}>
               수정하기
             </button>
@@ -106,10 +118,11 @@ const BtnWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: right;
+  margin-right: 100px;
   margin-bottom: 50px;
 
   button {
-    margin-right: 100px;
+    /* margin-right: 100px; */
     background-color: ${palette.gray[3]};
     border-radius: 5px;
     width: 80px;

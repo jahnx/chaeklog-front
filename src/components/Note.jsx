@@ -52,7 +52,7 @@ const Note = (props) => {
             <th>page</th>
             <th>sentence</th>
             <th>
-              edit
+              save
               <Line />
               delete
             </th>
@@ -199,7 +199,7 @@ const AddBtnWrapper = styled.td`
 const InputBtnContainer = styled.div`
   display: flex;
   align-items: center;
-  /* background-color: gray; */
+  padding-left: 4px;
 
   button {
     background-color: ${palette.gray[1]};

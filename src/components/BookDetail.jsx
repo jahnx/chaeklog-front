@@ -18,7 +18,6 @@ const BookDetail = (props) => {
       <Content>
         <h1>{title}</h1>
         <h2>{authors}</h2>
-        <h3>독서 기간</h3>
         {props.type !== 'detail' ? (
           <>
             <input
@@ -81,8 +80,7 @@ const Content = styled.div`
   width: auto;
 
   h1,
-  h2,
-  h3 {
+  h2 {
     margin-bottom: 6px;
   }
 
@@ -92,10 +90,6 @@ const Content = styled.div`
 
   h2 {
     font-size: 15px;
-  }
-
-  h3 {
-    font-size: 13px;
   }
 
   input {

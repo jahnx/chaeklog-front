@@ -10,6 +10,7 @@ const Book = (props) => {
     startDate: startDate,
     endDate: endDate,
   };
+
   return (
     <StyledLinkWrapper>
       <Link
@@ -50,6 +51,7 @@ export default Book;
 
 const StyledLinkWrapper = styled.div`
   display: inline-block;
+  position: relative;
 `;
 
 const Container = styled.div`
@@ -81,7 +83,7 @@ const Content = styled.div`
   width: 180px;
 
   h1 {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 6px;
   }
 
@@ -91,7 +93,7 @@ const Content = styled.div`
   }
 
   & span {
-    font-size: 15px;
+    font-size: 13px;
 
     &:not(:last-child)::after {
       content: ' ~ ';
