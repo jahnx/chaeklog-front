@@ -34,7 +34,7 @@ const Note = (props) => {
     };
 
     axios
-      .post(`${bookId}/notes`, note)
+      .post(`books/${bookId}/notes`, note)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
 

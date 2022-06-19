@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "http-proxy-middleware": "^2.0.6",
     "immer": "^9.0.14",
     "immutable": "^4.1.0",
     "js-cookie": "^3.0.1",
@@ -50,5 +51,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://43.200.7.157:8080/"
+  "proxy": "http://15.164.146.105:8080"
 }

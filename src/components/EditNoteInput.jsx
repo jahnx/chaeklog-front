@@ -38,7 +38,7 @@ const EditNoteInput = (props) => {
       sentence: sentence,
     };
     axios
-      .patch(`${bookId}/notes/${noteId}`, body)
+      .patch(`books/${bookId}/notes/${noteId}`, body)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
     window.location.replace(`${bookId}`);
@@ -46,7 +46,7 @@ const EditNoteInput = (props) => {
 
   const handleDeleteNote = (noteId) => {
     axios
-      .delete(`${bookId}/notes/${noteId}`)
+      .delete(`books/${bookId}/notes/${noteId}`)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
     window.location.replace(`${bookId}`);

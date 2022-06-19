@@ -27,7 +27,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     axios
-      .get(`${bookId}`)
+      .get(`books/${bookId}`)
       .then((response) => setBookData(response.data))
       .catch((error) => console.log(error));
   }, [bookId, setBookData]);
@@ -41,7 +41,7 @@ const DetailPage = () => {
     };
 
     axios
-      .patch(`${bookId}`, body)
+      .patch(`books/${bookId}`, body)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
 
