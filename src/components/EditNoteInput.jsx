@@ -112,6 +112,7 @@ const SentenceContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 5px 0;
 `;
 
 const BtnContainer = styled.div`

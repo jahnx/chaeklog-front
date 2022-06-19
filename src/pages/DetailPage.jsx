@@ -80,11 +80,11 @@ const DetailPage = () => {
       ) : (
         <>
           <BtnWrapper>
-            <button type="button" onClick={(e) => handleDeleteNote(e)}>
-              삭제하기
-            </button>
             <button type="button" onClick={(e) => editOnOff(e)}>
               수정하기
+            </button>
+            <button type="button" onClick={(e) => handleDeleteNote(e)}>
+              삭제하기
             </button>
           </BtnWrapper>
           <BookDetail book={bookData} type="detail" />
@@ -131,7 +131,15 @@ const BtnWrapper = styled.div`
     font-weight: bold;
 
     &:hover {
-      background-color: ${palette.cyan[2]};
+      background-color: ${palette.red[2]};
+    }
+
+    &:first-child {
+      margin-right: 10px;
+
+      &:hover {
+        background-color: ${palette.cyan[2]};
+      }
     }
   }
 `;
