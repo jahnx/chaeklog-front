@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         max-width: 1000px;
-        width: 100%;
+        /* width: 100%; */
         margin: 20px auto;
         background-color: ${palette.gray[2]}
 

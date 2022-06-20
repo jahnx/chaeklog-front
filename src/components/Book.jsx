@@ -96,7 +96,7 @@ const Content = styled.div`
     font-size: 13px;
 
     &:not(:last-child)::after {
-      content: ' ~ ';
+      content: ' ➡️ ';
     }
   }
 `;

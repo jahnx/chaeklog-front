@@ -26,7 +26,7 @@ const BookDetail = (props) => {
               id="startDate"
               onChange={onChangeStartDate}
             />
-            <span>~</span>
+            <span> ➡️ </span>
             <input
               type="date"
               name="startDate"
@@ -57,9 +57,11 @@ export default BookDetail;
 // };
 
 const BookWrapper = styled.div`
-  /* border: 1px solid pink; */
   display: flex;
   margin-bottom: 50px;
+  @media screen and (max-width: 400px) {
+    width: 330px;
+  }
 `;
 
 const Thumbnail = styled.div`

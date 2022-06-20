@@ -65,10 +65,9 @@ const AddBook = () => {
 export default AddBook;
 
 const Container = styled.div`
-  /* border: 1px solid red; */
-  width: 100%;
   height: auto;
-  margin: 20px 0;
+  display: flex;
+  margin: 20px auto;
   padding: 50px 0;
   border-radius: 10px;
   background-color: white;
@@ -77,10 +76,20 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.08));
+  @media screen and (max-width: 400px) {
+    width: 400px;
+  }
+
+  @media (min-width: 401px) and (max-width: 700px) {
+    width: 700px;
+  }
+
+  @media (min-width: 701px) and (max-width: 1000px) {
+    width: 1000px;
+  }
 `;
 
 const BtnWrapper = styled.div`
-  /* border: 1px solid green; */
   width: 100%;
   display: flex;
   justify-content: right;
@@ -97,6 +106,10 @@ const BtnWrapper = styled.div`
 
     &:hover {
       background-color: ${palette.cyan[2]};
+    }
+
+    @media screen and (max-width: 400px) {
+      margin-right: 20px;
     }
   }
 `;

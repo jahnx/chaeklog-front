@@ -131,11 +131,23 @@ const Container = styled.div`
   height: auto;
   border: 1px solid #cecece;
   border-radius: 10px;
+
+  @media screen and (max-width: 400px) {
+    width: 350px;
+  }
+
+  @media (min-width: 401px) and (max-width: 700px) {
+    width: 600px;
+  }
+
+  @media (min-width: 701px) and (max-width: 1000px) {
+    width: 800px;
+  }
 `;
 
 const Table = styled.table`
   margin: 20px auto;
-  width: 700px;
+  width: 90%;
 
   th,
   td {
@@ -155,6 +167,16 @@ const Table = styled.table`
     &:last-child {
       width: 100px;
       font-size: 14px;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 350px;
+      font-size: 15px;
+
+      &:last-child {
+        width: 100px;
+        font-size: 12px;
+      }
     }
   }
   td {

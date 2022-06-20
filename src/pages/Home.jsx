@@ -27,7 +27,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <Container>
       <AddBtn text="새 책 기록" api="search" />
       <ListWrapper>
         <ListContainer>
@@ -38,24 +38,43 @@ const Home = () => {
           ))}
         </ListContainer>
       </ListWrapper>
-    </>
+    </Container>
   );
 };
 
 export default Home;
 
+const Container = styled.div``;
+
 const ListWrapper = styled.div`
-  /* background-color: pink; */
+  @media screen and (max-width: 400px) {
+    width: 400px;
+  }
+
+  @media (min-width: 401px) and (max-width: 700px) {
+    width: 700px;
+  }
+
+  @media (min-width: 701px) and (max-width: 1000px) {
+    width: 1000px;
+  }
 `;
 
 const ListContainer = styled.ol`
-  /* border: 1px solid blue; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  place-items: center;
   grid-gap: 5px;
 
   li {
-    /* border: 1px solid red; */
     width: 330px;
+  }
+
+  @media screen and (max-width: 400px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (min-width: 401px) and (max-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 `;

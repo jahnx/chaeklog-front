@@ -29,7 +29,7 @@ export default NavBar;
 const Container = styled.div`
   border: 1px solid black;
   border-radius: 10px;
-
+  width: 1000px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -40,5 +40,13 @@ const Container = styled.div`
   span {
     font-size: 15px;
     color: ${palette.gray[8]};
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 400px;
+  }
+
+  @media (min-width: 401px) and (max-width: 700px) {
+    width: 700px;
   }
 `;
