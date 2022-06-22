@@ -46,7 +46,11 @@ const RegisterForm = () => {
           console.log(response);
           navigate('/');
         })
-        .catch((error) => console.log(error.response))
+        .catch((error) => {
+          error.response.data.message === 'Existing Email'
+            ? alert('이미 존재하는 이메일 입니다.')
+            : console.log(error.response);
+        })
         .finally(() => {});
     },
     [email, password, passwordConfirm, navigate],

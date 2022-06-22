@@ -40,7 +40,11 @@ const LoginForm = () => {
           localStorage.setItem('token', accessToken);
           navigate('/books');
         })
-        .catch((error) => console.log(error.response))
+        .catch((error) => {
+          error.response.data.message === 'login failed'
+            ? alert('이메일이나 비밀번호를 다시 확인해주세요.')
+            : console.log(error.response);
+        })
         .finally(() => {});
     },
     [email, password, navigate],
