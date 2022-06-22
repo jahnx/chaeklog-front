@@ -42,10 +42,11 @@ const DetailPage = () => {
 
     axios
       .patch(`books/${bookId}`, body)
-      .then((response) => console.log(response.data))
+      .then((response) => {
+        console.log(response.data);
+        window.location.replace(`${bookId}`);
+      })
       .catch((error) => console.log(error));
-
-    window.location.replace(`${bookId}`);
   };
 
   const handleDeleteNote = (e) => {
