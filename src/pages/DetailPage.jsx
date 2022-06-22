@@ -32,7 +32,7 @@ const DetailPage = () => {
       .catch((error) => console.log(error));
   }, [bookId, setBookData]);
 
-  const onSubmit = (e) => {
+  const handleEditBook = (e) => {
     e.preventDefault();
 
     let body = {
@@ -62,13 +62,14 @@ const DetailPage = () => {
       {editable ? (
         <>
           <BtnWrapper>
-            <form
-              onSubmit={(e) => {
-                onSubmit(e);
+            <button
+              type="button"
+              onClick={(e) => {
+                handleEditBook(e);
               }}
             >
-              <button type="submit">수정완료</button>
-            </form>
+              수정완료
+            </button>
           </BtnWrapper>
           <BookDetail
             book={bookData}
