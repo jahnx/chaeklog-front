@@ -51,7 +51,7 @@ const DetailPage = () => {
   const handleDeleteNote = (e) => {
     e.preventDefault();
     axios
-      .delete(`${bookId}`)
+      .delete(`books/${bookId}`)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
     window.location.replace('/');
