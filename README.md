@@ -1,4 +1,4 @@
-# 책로그 Chaeklog - Back
+# 책로그 Chaeklog - Front
 - 프로젝트 이름: 책로그 Chaeklog
 - 개발 인원: 1명
 - 개발 기간: 2022.06.07 ~ 2022.06.20
