@@ -3,7 +3,7 @@
 - 개발 인원: 1명
 - 개발 기간: 2022.06.07 ~ 2022.06.20
 - 기술 스택: JavaScript, React
-- 배포: AWS - EC2
+- 배포: ~~AWS - EC2~~ 2022.12.24 배포중단
 - [백 레포](https://github.com/jahnx/chaeklog-back)
 - [명세서 겸 회고록](https://velog.io/@jahnx/%EC%B1%85%EB%A1%9C%EA%B7%B8-Chaeklog)
 
